@@ -1,0 +1,38 @@
+body {
+    background-color: rgb(255, 230, 230);
+}
+
+/*#expandedImg {*/
+/*    width: 80%;*/
+/*    border: 5px solid #222;*/
+/*    height: 25rem;*/
+/*    position: absolute;*/
+/*    left: 130px;*/
+/*}*/
+/*.image {*/
+/*    float: left;*/
+/*    width: 25%;*/
+/*    padding: 10px;*/
+/*}*/
+/*img {*/
+/*    width: 100px;*/
+/*    height: 8rem;*/
+/*    display: block;*/
+/*    margin: auto auto 0.5rem;*/
+/*    border: 5px solid #222;*/
+/*    object-fit: cover;*/
+/*}*/
+
+#name::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge add Firefox */
+#name {
+    -ms-overflow-style: none;
+    scrollbar-width: none; /* Firefox */
+}
+
+
+
+
