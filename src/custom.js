@@ -1,20 +1,21 @@
 export default class Select {
-    fill (countries) {
+    fill(countries) {
         let select = document.getElementById("name")
-        for (let value of Object.values(countries)){
+        for (let value of Object.values(countries)) {
             select.append(new Option(value.alpha3Code, value.name).create());
         }
     }
 }
 
-class Option{
+class Option {
     constructor(id, name) {
         this.id = id
         this.name = name
     }
+
     create() {
         let option = document.createElement("option");
-        option.id =  this.id;
+        option.id = this.id;
         option.value = this.name;
         option.text = this.name;
         return option;
@@ -22,25 +23,30 @@ class Option{
 }
 
 
-export class HttpClient{
-    getCountries(method, url) {
-        let request = new XMLHttpRequest()
-        request.open(method, url, false)
-        request.send(null);
-        if (request.status !== 200) {
-            throw new Error("Failed get api call")
-        }
-        return JSON.parse(request.responseText)
+export class HttpClient {
+
+    constructor(token) {
+        this.token = token
     }
 
-    getPhoto(method,url, params){
-        let request = new XMLHttpRequest();
-        request.open(method, url+"?"+params, false);
-        request.setRequestHeader("Authorization", "563492ad6f917000010000012259fe56b6e540229abe5aaf849b116d")
-        request.send(null);
-        if (request.status !== 200) {
-            throw new Error("Failed get api call: " + request.responseText)
+    async getCountries(method, url) {
+        let response = await fetch(url.toString())
+        if (response.status !== 200) {
+            throw new Error("Failed get api call")
         }
-        return JSON.parse(request.responseText)
+         return  response.json()
+    }
+
+    async getPhoto(method, url) {
+        let response = await fetch(url.toString(), {
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': this.token
+            })
+        })
+        if (response.status !== 200) {
+            throw new Error("Failed get api call: " + response.responseText)
+        }
+        return response.json()
     }
 }

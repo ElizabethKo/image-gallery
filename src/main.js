@@ -3,35 +3,23 @@ import Select, {HttpClient} from "@/custom";
 import Gallery from "@/gallery";
 
 require('@/assets/css.css')
-
-
+let config = require('./cg.js')
 new Vue({
     data: {
         show: true
     }
 })
 
-let hello = 'hello world how are you?';
-// document.write(hello.toUpperCase());
-let ar = hello.split('');
-for (let a in ar)
-    document.write(ar[a] + '<br/>')
-
-document.getElementsByTagName('a')
-handler();
-function handler() {
-    alert( "href" );
-
-}
-
 const baseSelect = new Select();
-let httpClient = new HttpClient()
-baseSelect.fill(httpClient.getCountries('GET', 'https://restcountries.eu/rest/v2/all'))
+let httpClient = new HttpClient(config['token'])
+httpClient.getCountries('GET', new URL(config['country_url'])).then(value => baseSelect.fill(value))
+
 
 let selectElement = document.getElementById("name")
     selectElement.addEventListener("change", function () {
-    let response = httpClient.getPhoto("GET", "https://api.pexels.com/v1/search", "query="+selectElement.value)
-    new Gallery().generate(response.photos)
+    let url = new URL(config['search_url']);
+    url.searchParams.set('query', selectElement.value);
+    httpClient.getPhoto("GET", url).then(value => new Gallery().generate(value.photos))
   });
 
 
