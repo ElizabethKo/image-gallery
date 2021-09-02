@@ -16,7 +16,6 @@ let hello = 'hello world how are you?';
 let ar = hello.split('');
 for (let a in ar)
     document.write(ar[a] + '<br/>')
-    console.log(ar[a])
 
 
 const baseSelect = new Select();
