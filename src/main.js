@@ -17,6 +17,12 @@ let ar = hello.split('');
 for (let a in ar)
     document.write(ar[a] + '<br/>')
 
+document.getElementsByTagName('a')
+handler();
+function handler() {
+    alert( "href" );
+
+}
 
 const baseSelect = new Select();
 let httpClient = new HttpClient()
