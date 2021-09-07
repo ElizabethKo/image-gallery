@@ -1,1 +1,1 @@
-My Java Script project
+My JavaScript project
