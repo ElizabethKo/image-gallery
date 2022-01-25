@@ -1,1 +1,1 @@
-My JavaScript project
+Practise with DOM and Classes
